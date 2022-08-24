@@ -29,28 +29,42 @@ export default class App extends React.Component {
 
 	constructor() {
 		super();
+		// Define a posicao da carta
 		this.position = new Animated.ValueXY();
+
+		// Define a carta para ser controlada no momento
 		this.state = {
 			currentIndex: 0
 		}
 	}
 	
+	// Cria a principal acao a ser feita com as cartas. E executado antes do render() e cria objeto
+	// contento informacao da acao
 	componentWillMount() {
 		this.PanResponder = PanResponder.create({
+			// Define caso a acao deve ser executada no comeco
 			onStartShouldSetPanResponder: (evt, gestureState) => true,
+
+			// Define o movimento feito quando se interaje com a carta
 			onPanResponderMove: (evt, gestureState) => {
 				this.position.setValue({x: gestureState.dx, y: gestureState.dy});
 			},
+
+			// Define a acao apos acabar o movimento
 			onPanResponderRelease: (evt, gestureState) => {
 
 			}
 		});
 	};
 
+	// Cria array de cartas
 	renderProfile = () => {
 		return Profile.map((item, i) => {
 			
+			// Se a carta para ser controlada for antes da exibida agora, nao controle-a e nao exiba-a
 			if (this.state.currentIndex > i) return null;
+
+			// Se a carta para ser controlada for a exibida agora, controle-a
 			else if (this.state.currentIndex == i) { 
 				return (
 					<Animated.View 
@@ -81,6 +95,7 @@ export default class App extends React.Component {
 				);
 			}
 			
+			// Se a carta exibida agora for depois da para ser controlada, exiba-a, mas nao controle-a
 			else {
 				return (
 					<Animated.View 
@@ -106,7 +121,7 @@ export default class App extends React.Component {
 					</Animated.View>
 				);
 			}
-		}).reverse();
+		}).reverse(); // Reverta o array, caso contrario e retornado um array em ordem oposta
 	};
 
 	render() {
