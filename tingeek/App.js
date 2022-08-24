@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Animated } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Animated, Image } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').widthw;
@@ -23,11 +23,13 @@ export default class App extends React.Component {
 			<View style={{flex: 1}}>
 				<View style={{height: 60}}></View>
 				<View style={{flex: 1}}>
-					<Animated.View style={{
-							height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
-							width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
-							padding: 10
-						}}>
+					<Animated.View style={[
+							{
+								height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
+								width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
+								padding: 10
+							}
+						]}>
 						
 						<Image 
 						style={{ // Primeira imagem
