@@ -77,7 +77,7 @@ export default class App extends React.Component {
 						{
 							height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
 							width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
-							padding: 10, 
+							padding: 20, 
 							position: 'absolute'
 						}
 					]}>
