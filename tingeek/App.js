@@ -35,9 +35,26 @@ export default class App extends React.Component {
 		// Define a carta para ser controlada no momento
 		this.state = {
 			currentIndex: 0
+		};
+
+		this.rotate = this.position.x.interpolate({
+			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+			outputRange: ["-10deg", "0deg", "10deg"],
+			extrapolate: 'clamp'
+		});
+
+		this.rotateAndTranslate = {
+			transform: [{
+				rotate: this.rotate	
+			},
+			...this.position.getTranslateTransform()
+			]
 		}
 	}
+
 	
+	
+
 	// Cria a principal acao a ser feita com as cartas. E executado antes do render() e cria objeto
 	// contento informacao da acao
 	componentWillMount() {
@@ -52,7 +69,7 @@ export default class App extends React.Component {
 
 			// Define a acao apos acabar o movimento
 			onPanResponderRelease: (evt, gestureState) => {
-
+				this.position.setValue({x: 0, y: 0});
 			}
 		});
 	};
@@ -71,9 +88,7 @@ export default class App extends React.Component {
 						{...this.PanResponder.panHandlers}
 						key={item.id}
 						style={[
-						{
-							transform: this.position.getTranslateTransform()
-						},
+						this.rotateAndTranslate,
 						{
 							height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
 							width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
@@ -81,7 +96,46 @@ export default class App extends React.Component {
 							position: 'absolute'
 						}
 					]}>
-					
+					<Animated.View
+					style={{
+								transform: [{rotate: "-30deg"}],
+								position: 'absolute',
+								top: 50,
+								left: 40,
+								zIndex: 1000
+							}}>
+						<Text
+						style={{
+							borderWidth: 4,
+							borderColor: "green",
+							color: "green",
+							fontSize: 30,
+							fontWeight: 800,
+							padding: 10
+						}}
+						>LIKE</Text>
+					</Animated.View> 
+
+					<Animated.View 
+					style={{
+								transform: [{rotate: "30deg"}],
+								position: 'absolute',
+								top: 50,
+								right: 40,
+								zIndex: 1000
+							}}>
+						<Text
+						style={{
+							borderWidth: 4,
+							borderColor: "red",
+							color: "red",
+							fontSize: 28,
+							fontWeight: 800,
+							padding: 10
+						}}
+						>NOPE</Text>
+					</Animated.View> 
+
 						<Image 
 						style={{ // Primeira imagem
 							flex: 1,
@@ -104,7 +158,7 @@ export default class App extends React.Component {
 						{
 							height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
 							width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
-							padding: 10, 
+							padding: 20, 
 							position: 'absolute'
 						}
 					]}>
