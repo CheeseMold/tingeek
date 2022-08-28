@@ -95,9 +95,34 @@ export default class App extends React.Component {
 				this.position.setValue({x: gestureState.dx, y: gestureState.dy});
 			},
 
-			// Define a acao apos acabar o movimento
+			// Define a acao apos acabar o movimento?
+			// Caso a imagem esteja em x > 120, mande-a 100 pixels para a direita e mude o index da atual carta
+			// Caso em x < -120, mande-a 100 pixels para a esquerda e mude o atual index da carta
+			// Caso nao esteja em nenhum dos dois, mande a carta para o centro com animacao
 			onPanResponderRelease: (evt, gestureState) => {
-				this.position.setValue({x: 0, y: 0});
+				if (gestureState.dx > 120) {
+					Animated.spring(this.position, {
+					  toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
+					}).start(() => {
+					  this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
+						this.position.setValue({ x: 0, y: 0 })
+					  })
+					})
+				  } else if (gestureState.dx < -120) {
+					Animated.spring(this.position, {
+					  toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
+					}).start(() => {
+					  this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
+						this.position.setValue({ x: 0, y: 0 })
+					  })
+					})
+				  } else {
+					Animated.spring(this.position, {
+					  toValue: { x: 0, y: 0 },
+					  friction: 4
+					}).start()
+				}
+		   
 			}
 		});
 	};
