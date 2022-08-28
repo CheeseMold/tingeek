@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Animated, Image, PanResponder } from 'react-native';
+import { Feather as Icon} from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -200,6 +201,12 @@ export default class App extends React.Component {
 							borderRadius: 20
 						}} 
 						source={item.uri}/>
+
+						<Text
+							style={styles.name}
+						>
+						{item.name}
+						</Text>
 					</Animated.View>
 				);
 			}
@@ -239,11 +246,31 @@ export default class App extends React.Component {
 		return (
 			// Estrutura basica do app
 			<View style={{flex: 1}}>
-				<View style={{height: 60}}></View>
+				<View style={{height: 60}}>
+
+					<View style={styles.header}>
+						<Icon name="user" size={32} color="gray" />
+						<Icon name="message-circle" size={32} color="gray" />
+					</View>
+
+				</View>
 				<View style={{flex: 1}}>
 					{this.renderProfile()}
 				</View>
-				<View style={{height: 60}}></View>
+				<View style={{height: 60}}>
+				
+					<View style={styles.footer}>
+							
+							<View style={styles.circle}>
+								<Icon name="x" size={32} color="#ec5288" />
+							</View>
+
+							<View style={styles.circle}>
+								<Icon name="heart" size={32} color="#6ee3b4" />
+							</View>
+						
+					</View>
+				</View>
 			</View>
 		);
 	}
@@ -251,10 +278,35 @@ export default class App extends React.Component {
 
 // Stylesheet/customizacao da pagina
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
+	header: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		padding: 25
 	},
+
+	footer: {
+		flexDirection: "row",
+		justifyContent: "space-evenly",
+		padding: 0
+	},
+	circle: {
+	  width: 64,
+	  height: 64,
+	  borderRadius: 32,
+	  padding: 12,
+	  justifyContent: "center",
+	  alignItems: "center",
+	  backgroundColor: "white",
+	  shadowColor: "gray",
+	  shadowOffset: { width: 1, height: 1 },
+	  shadowOpacity: 0.18,
+	  shadowRadius: 2,
+	},
+	name: {
+	  color: "white",
+	  fontSize: 32,
+	  position: "absolute",
+	  padding: 20,
+	  fontWeight: "bold",
+	}
 });
