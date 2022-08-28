@@ -62,6 +62,18 @@ export default class App extends React.Component {
 			outputRange: [1, 0, 0],
 			extrapolate: `clamp`
 		});
+
+		this.nextCardOpacity = this.position.x.interpolate({
+			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+			outputRange: [1, 0, 1],
+			extrapolate: `clamp`
+		});
+
+		this.nextCardScale = this.position.x.interpolate({
+			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+			outputRange: [1, 0.8, 1],
+			extrapolate: `clamp`
+		});
 	}
 
 	
@@ -170,6 +182,8 @@ export default class App extends React.Component {
 						key={item.id}
 						style={[
 						{
+							opacity: this.nextCardOpacity,
+							transform: [{scale: this.nextCardScale}],
 							height: SCREEN_HEIGHT - 120, // - 120 para ter a altura entre o cabecalho e rodape (60 + 60)
 							width: SCREEN_WIDTH, // Cabecalho e rodape nao irao impactar na largura
 							padding: 20, 
