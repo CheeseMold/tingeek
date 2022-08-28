@@ -51,24 +51,28 @@ export default class App extends React.Component {
 			]
 		}
 
+		// Opacidade do texto like
 		this.likeOpacity = this.position.x.interpolate({
 			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
 			outputRange: [0, 0, 1],
 			extrapolate: `clamp`
 		});
 	
+		// Opacidade do texto nope
 		this.nopeOpacity = this.position.x.interpolate({
 			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
 			outputRange: [1, 0, 0],
 			extrapolate: `clamp`
 		});
 
+		// Opacidade da carta depois da atual
 		this.nextCardOpacity = this.position.x.interpolate({
 			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
 			outputRange: [1, 0, 1],
 			extrapolate: `clamp`
 		});
 
+		// Tamanho da carta depois da atual
 		this.nextCardScale = this.position.x.interpolate({
 			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
 			outputRange: [1, 0.8, 1],
