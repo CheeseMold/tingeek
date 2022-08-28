@@ -50,6 +50,18 @@ export default class App extends React.Component {
 			...this.position.getTranslateTransform()
 			]
 		}
+
+		this.likeOpacity = this.position.x.interpolate({
+			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+			outputRange: [0, 0, 1],
+			extrapolate: `clamp`
+		});
+	
+		this.nopeOpacity = this.position.x.interpolate({
+			inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+			outputRange: [1, 0, 0],
+			extrapolate: `clamp`
+		});
 	}
 
 	
@@ -98,6 +110,7 @@ export default class App extends React.Component {
 					]}>
 					<Animated.View
 					style={{
+								opacity: this.likeOpacity,
 								transform: [{rotate: "-30deg"}],
 								position: 'absolute',
 								top: 50,
@@ -118,6 +131,7 @@ export default class App extends React.Component {
 
 					<Animated.View 
 					style={{
+								opacity: this.nopeOpacity,
 								transform: [{rotate: "30deg"}],
 								position: 'absolute',
 								top: 50,
