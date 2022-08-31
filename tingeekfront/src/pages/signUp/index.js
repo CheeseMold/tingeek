@@ -39,40 +39,7 @@ export default class SignUp extends Component {
       success: '',
     };
 
-    handleUsernameChange = (username) => {
-        this.setState({ username });
-    };
-
-    handleEmailChange = (email) => {
-      this.setState({ email });
-    };
-   
-    handlePasswordChange = (password) => {
-      this.setState({ password });
-    };
-   
-    handleBackToLoginPress = () => {
-      this.props.navigation.goBack();
-    };
-
-    handleSignInPress = async () => {
-      if (this.state.email.length === 0 || this.state.password.length === 0) {
-        this.setState({ error: 'Preencha usuário e senha para continuar!' }, () => false);
-      } else {
-        try {
-          await api.post('/register', {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
-          });
-   
-          this.setState({ success: 'Conta criada com sucesso! Redirecionando para o login', error: '' });
-        setTimeout(this.goToLogin, 2500);
-        } catch (_err) {
-          this.setState({ error: 'Houve um problema com o cadastro, verifique os dados preenchidos'});
-        }
-      }
-    };
+  
 
     goToLogin = () => {
         const resetAction = StackActions.reset({
