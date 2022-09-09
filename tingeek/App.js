@@ -1,7 +1,3 @@
-
-
-
-
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Animated, Image, PanResponder } from 'react-native';
@@ -12,14 +8,14 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 // Array com imagens
 const Profile = [
-	{id: "1", name: "Skyrim", uri: require('./assets/1.jpg')},
-	{id: "2", name: "Dark Souls", uri: require('./assets/2.jpg')},
-	{id: "3", name: "Metroid Prime", uri: require('./assets/3.jpg')},
-	{id: "4", name: "Zelda Twilight Princess", uri: require('./assets/5.jpg')},
-	{id: "5", name: "Zelda A Link Between Worlds", uri: require('./assets/6.jpg')},
-	{id: "6", name: "Mario 3D Land", uri: require('./assets/7.jpg')},
-	{id: "7", name: "Castlevania Sotn", uri: require('./assets/8.jpg')},
-	{id: "8", name: "Subnautica Below Zero", uri: require('./assets/9.png')}
+	{id: "1", name: " ", uri: require('./assets/a.gif')},
+	{id: "2", name: " ", uri: require('./assets/b.gif')},
+	{id: "3", name: " ", uri: require('./assets/c.gif')},
+	{id: "4", name: " ", uri: require('./assets/d.gif')},
+	{id: "5", name: " ", uri: require('./assets/e.jpeg')},
+	// {id: "6", name: "Mario 3D Land", uri: require('./assets/7.jpg')},
+	// {id: "7", name: "Castlevania Sotn", uri: require('./assets/8.jpg')},
+	// {id: "8", name: "Subnautica Below Zero", uri: require('./assets/9.png')}
 
 	// { id: "1", name: "Better Call Saul", uri: require("./assets/better-call-saul.jpg") },
 	// { id: "2", name: "Breaking Bad", uri: require("./assets/breaking-bad.jpg") },
